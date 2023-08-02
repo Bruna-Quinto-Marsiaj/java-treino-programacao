@@ -43,7 +43,7 @@ public class AlunoController {
     public ResponseEntity<?> saveAluno(@RequestBody Aluno form){
         alunoService.saveAluno(form);
         
-        return ResponseEntity.status(HttpStatus.CREATED).build();
+        return ResponseEntity.status(HttpStatus.CREATED).body(form);//vamos botar o body pra testar, tava build, pq pra seg n é bom retornar o body
     }
 
     @PutMapping("/{id}")
