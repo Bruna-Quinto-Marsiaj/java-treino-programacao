@@ -1,5 +1,8 @@
 package br.com.bank;
 
+import org.jetbrains.annotations.Contract;
+import org.jetbrains.annotations.NotNull;
+
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.nio.file.Path;
@@ -12,8 +15,13 @@ public class CaminhoArquivo {
 
     private Path arquivo;
 
-    private CaminhoArquivo(Path diretorio, Path arquivo) {
-        super();
+    /*private CaminhoArquivo(Path diretorio, Path arquivo) {
+        super();// ver pq ta aqui
+        this.diretorio = diretorio;
+        this.arquivo = arquivo;
+    }*/
+
+    public CaminhoArquivo(Path diretorio, Path arquivo) {
         this.diretorio = diretorio;
         this.arquivo = arquivo;
     }
@@ -26,24 +34,28 @@ public class CaminhoArquivo {
         return arquivo;
     }
 
-    public static CaminhoArquivo getInstance(Integer id) {
+    @Contract("_ -> new")
+    public static @NotNull CaminhoArquivo getInstance(Integer id) {
         String b = "/tmp/";
         String d = null;
         if (id <= 1000) {
-            d = b + id;
+            b = b + 1;
+            d = b + "/" + id ;
+        } else if(id <= 2000) {
+            b = b + 2;
+            d = b + "/" + id ;
         } else {
-            int i = id;
-            boolean f = true;
-            while (f) {
-                if (id <= (i * 1000)) {
-                    d = b + i;
-                    f = false;
-                }
-                i++;
-            }
-        }
-        return new CaminhoArquivo(Paths.get(d), Paths.get(d));
+            b = b + 3;
+            d = b + "/" + id ;
 
+        }
+        return new CaminhoArquivo(Paths.get(b), Paths.get(d));
+
+    }
+
+    public static RuntimeException getInstance() {
+
+        return new RuntimeException(" É esperado um valor inteiro no parâmetro do método CaminhoArquivo.getInstance()");
     }
 
 }
