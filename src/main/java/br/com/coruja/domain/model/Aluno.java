@@ -21,10 +21,15 @@ public class Aluno {
     
 
     
-    public Aluno(@NotNull String name, String email) {
+    /*public Aluno(Long id, @NotNull String name, String email) {
+        this.id = id;
         this.name = name;
         this.email = email;
     }
+    public Aluno(@NotNull String name, String email) {
+        this.name = name;
+        this.email = email;
+    }*/
     public Long getId() {
         return id;
     }
