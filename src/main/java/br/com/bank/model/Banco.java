@@ -37,4 +37,7 @@ public class Banco {
     private List<Conta> filtrarContas(Predicate<Conta> filtro) {
         return contas.stream().filter(filtro).collect(Collectors.toList());
     }
+    public Integer getTotalDeContas() {
+        return contas.size();
+    }
 }

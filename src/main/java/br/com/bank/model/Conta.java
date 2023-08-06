@@ -6,11 +6,17 @@ public class Conta {
 	private double saldo;
 	private String cpf;
 
-	public Conta(String cpf) {
+	
+
+	public Conta() {
+    }
+
+	public Conta(String cpf, int i) {
 		this.cpf = cpf;
+		saldo = i;
 	}
 
-	public double getSaldo() {
+    public double getSaldo() {
 		return saldo;
 	}
 
